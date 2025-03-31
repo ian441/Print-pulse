@@ -1,0 +1,645 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #dfa1a1; /* Change as needed */
+    position: relative;
+  }
+  
+  .logo {
+    height: 70px; /* Adjust as needed */
+    width: 70px;
+    border-radius: 50%;
+  }
+  
+  .links-container {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  
+  .links-container a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+  }
+  
+  .links-container a:hover {
+    color: #2315db; /* Change hover color as needed */
+  }
+  
+  /* Mobile menu button - hidden by default */
+  .open-sidebar-button,
+  .close-sidebar-button {
+    display: none;
+    cursor: pointer;
+  }
+  
+  /* Hide the checkbox */
+  #sidebar-active {
+    display: none;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .links-container {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      height: 100vh;
+      width: 70%;
+      max-width: 300px;
+      background-color: #333;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2rem;
+      transition: right 0.3s ease;
+      z-index: 100;
+    }
+    
+    .open-sidebar-button {
+      display: block;
+      z-index: 10;
+    }
+    
+    .close-sidebar-button {
+      display: block;
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+    }
+    
+    /* When checkbox is checked, show the sidebar */
+    #sidebar-active:checked ~ .links-container {
+      right: 0;
+    }
+    
+    /* Optional: Add overlay when menu is open */
+    #sidebar-active:checked ~ .overlay {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 50;
+    }
+  }
+  #home {
+    position: relative;
+    padding: 20px;
+    background-color: #e5a5a5;
+
+  }
+  
+  .home-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+  }
+  
+  .home-text {
+    position: relative;
+    z-index: 2; /* Ensure text appears above the image */
+    margin-bottom: 50px;
+    text-align: left;
+    max-width: 600px; /* Adjust as needed */
+  }
+  .home-text h2{
+    font-size: 2.5rem;
+  }
+  .home-text p{
+    font-size: 1.5rem;
+  }
+  
+  .home-image {
+    position: relative;
+    width: 90%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Your box shadow */
+    margin-top: -30px; /* Adjust this to overlap if needed */
+    z-index: 1;
+    border-radius: 5px;
+  }
+  
+  .home-image img {
+    width: 90%;
+    display: block;
+  }
+  
+  .mvv-container {
+    max-width: 90%;
+    margin: 50px auto 0;
+}
+
+.mvv-container .mvv-block {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.mvv-container .mvv-block .image {
+    flex: 0 0 auto;
+    width: 70%; /* Changed to 70% width */
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0 0 4px 5px rgba(0, 0, 0, 0.3);
+    line-height: 0;
+    margin: 0 auto; /* Center the image */
+}
+
+.mvv-container .mvv-block .image img {
+    width: 100%; /* Image will fill its container */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Remove extra space below image */
+}
+
+.mvv-container .mvv-block .content {
+    flex: 0 0 auto;
+    width: 100%; /* Full width on mobile, changed below for desktop */
+    box-sizing: border-box;
+    align-self: center;
+    padding: 20px 0; /* Add some vertical spacing */
+}
+
+.mvv-container .mvv-block .content h3 {
+    font-weight: 700;
+    font-size: 22px;
+    color: blue;
+    margin-bottom: 10px;
+}
+
+.mvv-container .mvv-block .content p {
+    font-size: 1.3rem;
+}
+
+/* Desktop layout */
+@media screen and (min-width: 768px) {
+    .mvv-container .mvv-block .image {
+        width: 40%; /* Adjust image width for desktop */
+        margin: 0; /* Reset margin for desktop layout */
+    }
+    
+    .mvv-container .mvv-block .content {
+        width: 55%; /* Adjust content width for desktop */
+        padding: 0 30px; /* Horizontal padding only on desktop */
+    }
+    
+    .mvv-container .mvv-block:nth-child(odd) .image {
+        order: 1;
+    }
+    .mvv-container .mvv-block:nth-child(even) .image {
+        order: 2;
+    }
+    .mvv-container .mvv-block:nth-child(odd) .content {
+        order: 2;
+        padding-left: 30px;
+        padding-right: 0;
+    }
+    .mvv-container .mvv-block:nth-child(even) .content {
+        order: 1;
+        padding-right: 30px;
+        padding-left: 0;
+    }
+}
+
+/* Mobile layout - stack image and content */
+@media screen and (max-width: 767px) {
+    .mvv-container .mvv-block {
+        flex-direction: column;
+    }
+    
+    .mvv-container .mvv-block .image,
+    .mvv-container .mvv-block .content {
+        width: 100%;
+    }
+    
+    /* Remove any specific ordering for mobile */
+    .mvv-container .mvv-block:nth-child(odd) .image,
+    .mvv-container .mvv-block:nth-child(even) .image,
+    .mvv-container .mvv-block:nth-child(odd) .content,
+    .mvv-container .mvv-block:nth-child(even) .content {
+        order: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+#services {
+    padding: 50px 20px;
+    background-color: #fff; /* White background for contrast */
+    text-align: center;
+}
+
+#services h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+/* Container for service cards */
+.services-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; /* Ensures responsiveness */
+    gap: 20px; /* Adds space between cards */
+    max-width: 1200px;
+    margin: 0 auto; /* Center the container */
+}
+
+/* Styles for each service card */
+.service-card {
+    background-color: #978e8e;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+.service-card i {
+    font-size: 2.5rem;
+    color: #007BFF; 
+    margin-bottom: 20px;
+}
+.service-card h3 {
+    font-size: 1.5rem;
+    color:black;
+    margin-bottom: 15px;
+}
+
+
+.service-card p {
+    font-size: 1rem;
+    color: #f9f9f9;
+    line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .services-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .service-card {
+        width: 80%; /* Make cards wider on smaller screens */
+    }
+}
+
+.gallery {
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #f9f9f9;
+    padding: 50px 20px;
+    gap: 20px;
+    
+    
+}
+.gallery-text {
+    text-align: left; /* Aligns text to the left */
+    max-width: 1200px; /* Limits the width of the text container */
+    margin-left: 70px; /* Centers the text container horizontally */
+    padding: 20px 10px; /* Adds padding above and below the text */
+}
+
+.gallery-text h2 {
+    font-size: 2.5rem; /* Increases the font size of the heading */
+    color: #333; /* Sets the text color */
+    margin-bottom: 5px; /* Adds space below the heading */
+}
+
+.gallery-text p {
+    color: #111010; 
+    font-size: 1.5rem;
+    margin-bottom: 10px; /* Adds space below the paragraph */
+}
+
+.gallery img {
+    width: calc(25% - 20px);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+    transform: scale(1.1);
+}
+@media(max-width: 768px){
+    .gallery{
+        flex-direction: row;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding: 20px 10px;
+    }
+    .gallery img{
+        width: 150px;
+        flex: 0 0 auto;
+    }
+    .gallery-text{
+        text-align: center;
+        margin-left: 0;
+    }
+    .gallery-text h2{
+        font-size: 2rem;
+    }
+    .gallery-text p{
+        font-size: 1.2rem;
+    }
+}
+#shirt {
+    padding: 50px 20px; /* Adds padding around the section */
+    background-color: #f9f9f9;
+}
+
+.shirt-container {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; 
+    max-width: 1200px; /* Limits the width of the container */
+    margin: 0 auto; /* Centers the container horizontally */
+    gap: 40px; 
+}
+
+.container-text {
+    max-width: 600px; /* Limits the width of the text */
+}
+
+.container-text h3 {
+    font-size: 2rem; 
+    color: #333; 
+    margin-bottom: 20px; /* Adds space below the heading */
+}
+
+.container-text p {
+    font-size: 1.3rem; 
+    color: black; 
+    line-height: 1.6; /* Improves readability */
+    margin-bottom: 20px; 
+}
+
+.container-text span {
+    font-size: 0.9rem; 
+    color: #888; 
+}
+
+.shirt-img {
+    max-width: 500px; /* Limits the width of the image container */
+}
+
+.shirt-img img {
+    width: 100%; 
+    height: 70vh; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+@media (max-width: 768px) {
+    .shirt-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .shirt-img {
+        width: 80%; /* Make cards wider on smaller screens */
+    }
+}
+#reviews {
+    padding: 20px 10px;
+    background-color: #f9f9f9; /* Light background for contrast */
+    text-align: center;
+}
+
+#reviews h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+/* Container for review cards */
+.reviews-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px; /* Adds space between review cards */
+    flex-wrap: wrap; /* Ensures responsiveness */
+}
+
+/* Styles for each review card */
+.review-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeInUp 1s ease-in-out; /* Animation for review cards */
+}
+
+.review-card:hover {
+    transform: translateY(-10px); /* Lift card on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.review-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%; /* Circular image */
+    margin-bottom: 15px;
+    object-fit: cover; /* Ensures the image fits well */
+}
+
+.review-card p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.review-card span {
+    font-size: 0.9rem;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .reviews-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .review-card {
+        width: 80%; /* Make cards wider on smaller screens */
+    }
+}
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-form, .mpesa-payment {
+    width: 48%;
+}
+
+.contact-form h2, .mpesa-payment h3 {
+    margin-bottom: 20px;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.contact-form input, .contact-form textarea {
+    width: 70%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.contact-form textarea {
+    height: 90px;
+}
+
+.contact-form button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+.contact-form button:hover {
+    background-color: #0056b3;
+}
+
+.mpesa-payment table {
+    width: 70%;
+    border-collapse: collapse;
+    margin-top: 50px;
+}
+
+.mpesa-payment table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding: 10px;
+        align-items: center;
+    }
+
+    .contact-form, .mpesa-payment {
+        
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .contact-form input, .contact-form textarea {
+        width: calc(80% - 20px); /* Adjust for padding */
+    }
+
+    .mpesa-payment table td {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-form h2, .mpesa-payment h3 {
+        font-size: 1.5em;
+    }
+
+    .contact-form label {
+        font-size: 0.9em;
+    }
+
+    .contact-form input, .contact-form textarea {
+        padding: 8px;
+    }
+
+    .contact-form button {
+        width: 100%;
+        padding: 12px;
+    }
+
+    .mpesa-payment table td {
+        padding: 6px;
+        font-size: 0.9em;
+    }
+}
+/* Footer Styles */
+.footer {
+    background-color: #111;
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+    font-family: Arial, sans-serif;
+}
+
+/* Social Icons Container */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem; /* Space between icons */
+    margin-bottom: 1rem;
+}
+
+/* Icon Links */
+.icon-link {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 3rem;
+    height: 3rem;
+    background-color: #b74b4b;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover Effect for Icons */
+.icon-link:hover {
+    background-color: #fff;
+    color: #b74b4b;
+    transform: translateY(-0.3rem);
+}
+
+/* Footer Text */
+.footer-text {
+    font-size: 1rem;
+    margin: 0;
+    color: #ccc;
+}
